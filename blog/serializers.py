@@ -36,7 +36,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     gender = serializers.SerializerMethodField()
     # articles = ArticleSerializer(many=True, source='article_set')
-    # articles = ArticleSerializer(many=True, read_only=True)
+    articles = ArticleSerializer(many=True, read_only=True)
     # articles = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     # articles = serializers.SlugRelatedField(many=True, read_only=True,slug_field='title')
     # articles = User.articles

@@ -14,12 +14,17 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from rest_framework.routers import DefaultRouter
-from blog import views
-
-
+from blog import views as blog_views
+from school import views as school_views
 router = DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'articles', views.ArticleViesSet)
+# blog
+router.register(r'users', blog_views.UserViewSet)
+router.register(r'articles', blog_views.ArticleViesSet)
+
+# school
+router.register(r'students', school_views.StudentViewSet)
+router.register(r'scores', school_views.ScoreViewSet)
+router.register(r'lessons', school_views.LessonViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls))

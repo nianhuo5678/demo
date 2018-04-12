@@ -1,8 +1,7 @@
 from rest_framework import viewsets
 from models import User, Article
 from serializers import UserSerializer, ArticleSerializer
-from django.utils import timezone
-import hashlib
+
 
 # Create your views here.
 
