@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from rest_framework import serializers, request
+from rest_framework import serializers
 from models import Student, Lesson, Score
 
 
@@ -13,7 +13,7 @@ class LessonSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
-    scores = serializers.SerializerMethodField()
+    scores = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Student
@@ -24,7 +24,8 @@ class StudentSerializer(serializers.ModelSerializer):
         )
 
     def get_scores(self, obj):
-        l_id = request.Get['lesson_id']
+        # l_id = self.context.get('request').GET['lesson_id']
+        l_id = self.context.get('request').query_params['lesson_id']
         return Score.objects.get(student_id=obj.id, lesson_id=l_id).score
 
 
